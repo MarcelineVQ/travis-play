@@ -26,6 +26,7 @@ jobs:
   include:
     - stage: prepare cache
       script: true
+      addons: {apt: {packages: [cabal-install-1.24,ghc-8.0.1,hscolour], sources: [hvr-ghc]}}
     - stage: test
       script: echo test-stage
       env:
