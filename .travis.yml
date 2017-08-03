@@ -1,5 +1,15 @@
 language: c
 
+install:
+  - which cabal
+  - which ghc
+  - cabal --version
+  
+
+cache:
+  directories:
+    - $HOME/.stack
+
 jobs:
   include:
     - stage: prepare cache
@@ -8,6 +18,8 @@ jobs:
       script: echo test-stage
 
 env:
+  global:
+    - PKGNAME=cachetesterpkg
   - env: CABALVER="1.24" GHCVER="8.0.1" STACKVER="7.14" STYLISH=YES
     addons: {apt: {packages: [cabal-install-1.24,ghc-8.0.1,hscolour], sources: [hvr-ghc]}}
   - env: CABALVER="1.22" GHCVER="7.10.3" TESTS="lib_doc doc"
