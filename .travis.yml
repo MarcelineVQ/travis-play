@@ -1,10 +1,9 @@
+language: c
 
 jobs:
   include:
-    - stage: setup
+    - stage: prepare cache
       script: echo setup-stage
-    - stage: cache
-      script: echo cache-stage
     - stage: test
       script: echo test-stage
 
