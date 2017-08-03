@@ -3,7 +3,7 @@ language: c
 jobs:
   include:
     - stage: prepare cache
-      script: echo setup-stage
+      script: true
     - stage: test
       script: echo test-stage
 
