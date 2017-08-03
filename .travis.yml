@@ -16,16 +16,43 @@ install:
   - which cabal
   - which ghc
   - cabal --version
+  - cabal new-build --dependencies-only
   
 
 cache:
   directories:
     - $HOME/.stack
+    - $HOME/.cabal/packages
+    - $HOME/.cabal/store
 
 jobs:
   include:
     - stage: prepare cache
       script: true
+      addons: {apt: {packages: [cabal-install-1.24,ghc-8.0.1,hscolour], sources: [hvr-ghc]}}
+    - stage: test
+      script: echo test-stage
+      env:
+        - CABALVER="1.24"
+        - GHCVER="8.0.1"
+        - STACKVER="7.14"
+        - STYLISH=YES
+      addons: {apt: {packages: [cabal-install-1.24,ghc-8.0.1,hscolour], sources: [hvr-ghc]}}
+    - stage: test
+      script: echo test-stage
+      env:
+        - CABALVER="1.24"
+        - GHCVER="8.0.1"
+        - STACKVER="7.14"
+        - STYLISH=YES
+      addons: {apt: {packages: [cabal-install-1.24,ghc-8.0.1,hscolour], sources: [hvr-ghc]}}
+    - stage: test
+      script: echo test-stage
+      env:
+        - CABALVER="1.24"
+        - GHCVER="8.0.1"
+        - STACKVER="7.14"
+        - STYLISH=YES
       addons: {apt: {packages: [cabal-install-1.24,ghc-8.0.1,hscolour], sources: [hvr-ghc]}}
     - stage: test
       script: echo test-stage
