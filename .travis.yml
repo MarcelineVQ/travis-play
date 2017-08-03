@@ -1,5 +1,17 @@
 language: c
 
+before_install:
+  - nvm install 6
+  - nvm use 6
+  - unset CC
+  - if [[ $TRAVIS_OS_NAME == 'linux' ]];
+    then
+        export PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$HOME/.cabal/bin:$PATH;
+        export SED=sed;
+        export ZCAT=zcat;
+    fi
+  - env
+
 install:
   - which cabal
   - which ghc
@@ -22,6 +34,7 @@ jobs:
         - STACKVER="7.14"
         - STYLISH=YES
       addons: {apt: {packages: [cabal-install-1.24,ghc-8.0.1,hscolour], sources: [hvr-ghc]}}
+  
   # 
   # 
   # - env: CABALVER="1.22" GHCVER="7.10.3" TESTS="lib_doc doc"
